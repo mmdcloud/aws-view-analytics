@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { PackageSearch } from 'lucide-react';
-import { KinesisClient, PutRecordCommand } from '@aws-sdk/client-kinesis';
 
 interface ProductFormData {
   name: string;
@@ -35,25 +34,23 @@ function App() {
   };
   const sendToKinesis = async (payload:ProductFormData) => {
     try {
-      const params = {
-        StreamName: 'view-analytics-stream',
-        Data: new TextEncoder().encode(JSON.stringify({
+      const response = await fetch('/api/kinesis', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           payload,
           timestamp: new Date().toISOString()
-        })),
-        PartitionKey: 'partition-' + Date.now()
-      };
-
-      const command = new PutRecordCommand(params);
-      const response = await client.send(command);
-      console.log(response);
+        }),
+      });
+      
+      const data = await response.json();
+      console.log(data);
     } catch (error) {
-      console.error('Error sending to Kinesis:', error);
+      console.error('Error sending to Kinesis via proxy:', error);
     }
   };
-  const client = new KinesisClient({
-    region: 'us-east-1'
-  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
