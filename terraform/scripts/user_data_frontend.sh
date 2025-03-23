@@ -27,5 +27,6 @@ sudo npm run build
 # Starting PM2 app
 cp -r /home/ubuntu/aws-view-analytics/backend/* /home/ubuntu/backend/
 cd /home/ubuntu/backend
+sudo npm i
 sudo pm2 start server.js
 sudo service nginx restart
