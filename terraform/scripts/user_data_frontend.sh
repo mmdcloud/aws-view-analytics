@@ -11,6 +11,7 @@ sudo apt install nodejs -y
 sudo npm i -g pm2
 cd /home/ubuntu
 mkdir nodeapp
+mkdir backend
 # Checking out from Version Control
 git clone https://github.com/mmdcloud/aws-view-analytics
 cd aws-view-analytics/frontend
@@ -24,4 +25,7 @@ sudo chmod 755 /home/ubuntu
 # Building the project
 sudo npm run build
 # Starting PM2 app
+cp -r /home/ubuntu/aws-view-analytics/backend/* /home/ubuntu/backend/
+cd /home/ubuntu/backend
+sudo pm2 start server.js
 sudo service nginx restart
