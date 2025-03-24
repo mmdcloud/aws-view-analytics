@@ -18,7 +18,7 @@ cd aws-view-analytics/frontend
 cp -r . /home/ubuntu/nodeapp/
 cd /home/ubuntu/nodeapp/
 # Copying Nginx config
-cp scripts/default /etc/nginx/sites-available/
+cp /home/ubuntu/aws-view-analytics/terraform/scripts/default /etc/nginx/sites-available/
 # Installing dependencies
 sudo npm i
 sudo chmod 755 /home/ubuntu
