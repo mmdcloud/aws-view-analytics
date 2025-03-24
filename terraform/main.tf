@@ -161,7 +161,7 @@ module "view_analytics_frontend_instance" {
   instance_type               = "t2.micro"
   key_name                    = "madmaxkeypair"
   associate_public_ip_address = true
-  user_data                   = filebase64("${path.module}/scripts/user_data_frontend.sh")
+  user_data                   = filebase64("${path.module}/scripts/user_data.sh")
   instance_profile            = aws_iam_instance_profile.iam_instance_profile.name
   subnet_id                   = module.public_subnets.subnets[0].id
   security_groups             = [module.security_group.id]
