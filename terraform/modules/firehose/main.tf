@@ -57,8 +57,7 @@ resource "aws_kinesis_firehose_delivery_stream" "firehose_delivery_stream" {
   opensearch_configuration {
     domain_arn = var.opensearch_domain_arn
     role_arn   = var.opensearch_role_arn
-    index_name = var.opensearch_index_name
-
+    index_name = var.opensearch_index_name    
     s3_configuration {
       role_arn           = var.s3_role_arn
       bucket_arn         = var.backup_bucket_arn

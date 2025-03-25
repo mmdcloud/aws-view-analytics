@@ -215,6 +215,16 @@ module "view_analytics_transform_function_iam_role" {
                 ],
                 "Resource": "arn:aws:logs:*:*:*",
                 "Effect": "Allow"
+            },
+            {
+                  "Effect": "Allow",
+                  "Action": [
+                    "kinesis:GetRecords",
+                    "kinesis:GetShardIterator",
+                    "kinesis:DescribeStream",
+                    "kinesis:ListShards"
+                  ],
+                  "Resource": "*"
             }
         ]
     }
@@ -318,7 +328,7 @@ module "view_analytics_firehose_iam_role" {
                 "lambda:InvokeFunction",
                 "lambda:GetFunctionConfiguration"
             ],
-            "Resource": "${module.view_analytics_transform_function.arn}:$LATEST"
+            "Resource": "${module.view_analytics_transform_function.arn}:*"
         },        
         {
             "Sid": "",

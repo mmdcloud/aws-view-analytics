@@ -50,26 +50,6 @@ def transform_record(data):
     
     # 1. Add processing timestamp
     from datetime import datetime
-    data['processing_timestamp'] = datetime.now().isoformat()
-    
-    # 2. Convert certain fields to uppercase (if they exist)
-    if 'message' in data:
-        data['message'] = data['message'].upper()
-    
-    # 3. Filter out sensitive fields
-    if 'password' in data:
-        del data['password']
-    
-    # 4. Add a new calculated field
-    if 'value1' in data and 'value2' in data:
-        try:
-            data['calculated'] = float(data['value1']) * float(data['value2'])
-        except (ValueError, TypeError):
-            pass
-    
-    # 5. Restructure data (example)
-    if 'nested' in data and isinstance(data['nested'], dict):
-        for key, value in data['nested'].items():
-            data[f'flat_{key}'] = value
+    data['processing_timestamp'] = datetime.now().isoformat()    
     
     return data
