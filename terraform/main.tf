@@ -328,7 +328,7 @@ module "view_analytics_firehose_iam_role" {
                 "lambda:InvokeFunction",
                 "lambda:GetFunctionConfiguration"
             ],
-            "Resource": "${module.view_analytics_transform_function.arn}:*"
+            "Resource": "*"
         },        
         {
             "Sid": "",
@@ -396,7 +396,7 @@ module "view_analytics_firehose_iam_role" {
                 "kinesis:GetRecords",
                 "kinesis:ListShards"
             ],
-            "Resource": "${module.view_analytics_kinesis_stream.arn}"
+            "Resource": "*"
         },
         {
             "Effect": "Allow",
