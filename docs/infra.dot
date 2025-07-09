@@ -1,0 +1,40 @@
+digraph INFRA {
+  node [ color = "black", fillcolor = "#E6E6E6", height =1, style = "filled,bold,rounded", fontname = "Arial" ];
+  "view-analytics-vpc" [ label = "view-analytics-vpc
+(AWS::EC2::VPC)", shape =rectangle ];
+  "view-analytics-security-group" [ label = "view-analytics-security-group
+(AWS::EC2::SecurityGroup)", shape =rectangle ];
+  "view-analytics-public-subnet" [ label = "view-analytics-public-subnet
+(AWS::EC2::Subnet)", shape =rectangle ];
+  "view-analytics-private-subnet" [ label = "view-analytics-private-subnet
+(AWS::EC2::Subnet)", shape =rectangle ];
+  "view-analytics-public-route-table" [ label = "view-analytics-public-route-table
+(AWS::EC2::RouteTable)", shape =rectangle ];
+  "view-analytics-private-route-table" [ label = "view-analytics-private-route-table
+(AWS::EC2::RouteTable)", shape =rectangle ];
+  "view-analytics-frontend-instance" [ label = "view-analytics-frontend-instance
+(AWS::EC2::Instance)", shape =rectangle, fillcolor = "#B7E0FF" ];
+  "viewanalyticstransformfunctioncode" [ label = "viewanalyticstransformfunctioncode
+(AWS::S3::Bucket)", shape =cylinder, fillcolor = "#FFF5CD" ];
+  "view-analytics-transform-function" [ label = "view-analytics-transform-function
+(AWS::Lambda::Function)", shape =rectangle, fillcolor = "#B7E0FF" ];
+  "view-analytics-stream" [ label = "view-analytics-stream
+(AWS::Kinesis::Stream)", shape =rectangle, fillcolor = "#CCE0AC" ];
+  "opensearchdestination" [ label = "opensearchdestination
+(AWS::OpenSearchService::Domain)", shape =cylinder, fillcolor = "#FFCFB3" ];
+  "view-analytics-lambda-function-iam-role" [ label = "view-analytics-lambda-function-iam-role
+(AWS::IAM::Role)", shape =rectangle ];
+  "view-analytics-firehose-iam-role" [ label = "view-analytics-firehose-iam-role
+(AWS::IAM::Role)", shape =rectangle ];
+  "view-analytics-security-group" -> "view-analytics-vpc";
+  "view-analytics-public-subnet" -> "view-analytics-vpc";
+  "view-analytics-private-subnet" -> "view-analytics-vpc";
+  "view-analytics-public-route-table" -> "view-analytics-vpc";
+  "view-analytics-public-route-table" -> "view-analytics-public-subnet";
+  "view-analytics-private-route-table" -> "view-analytics-vpc";
+  "view-analytics-private-route-table" -> "view-analytics-private-subnet";
+  "view-analytics-frontend-instance" -> "view-analytics-public-subnet";
+  "view-analytics-frontend-instance" -> "view-analytics-security-group";
+  "view-analytics-transform-function" -> "viewanalyticstransformfunctioncode";
+  "view-analytics-transform-function" -> "view-analytics-lambda-function-iam-role";
+}
