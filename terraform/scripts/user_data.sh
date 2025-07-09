@@ -14,7 +14,7 @@ mkdir nodeapp
 mkdir backend
 # Checking out from Version Control
 git clone https://github.com/mmdcloud/aws-view-analytics
-cd aws-view-analytics/frontend
+cd aws-view-analytics/src/frontend
 cp -r . /home/ubuntu/nodeapp/
 cd /home/ubuntu/nodeapp/
 # Copying Nginx config
@@ -25,7 +25,7 @@ sudo chmod 755 /home/ubuntu
 # Building the project
 sudo npm run build
 # Starting PM2 app
-cp -r /home/ubuntu/aws-view-analytics/backend/* /home/ubuntu/backend/
+cp -r /home/ubuntu/aws-view-analytics/src/backend/* /home/ubuntu/backend/
 cd /home/ubuntu/backend
 sudo npm i
 sudo pm2 start server.js
